@@ -3,9 +3,19 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const PORT = '3000';
+// MongoDB URL from the docker-compose file
+const dbHost = 'mongodb://database/mean-docker';
+
+// Connect to mongodb
+mongoose.connect(dbHost)
+    .then(() => console.log("Connected to DB"))
+    .catch((err) => console.log("Error connecting to DB: " + err));
 
 // Get our API routes
 const api = require('./routes/api');
+const people = require('./routes/people');
 
 const app = express();
 
@@ -21,10 +31,10 @@ app.use(function(req, res, next) {
 });
 
 // Set our api routes
-app.use('/api', api);
+app.use('/api', api, people);
 
 // Get port from environment and store in Express.
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || PORT;
 app.set('port', port);
 
 // Create HTTP server.

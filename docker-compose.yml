@@ -14,5 +14,12 @@ services:
     build: express-server
     ports: 
       - "3000:3000"
+    links:
+      - database
+
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"
 
 ## https://scotch.io/tutorials/create-a-mean-app-with-angular-2-and-docker-compose
