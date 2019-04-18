@@ -75,6 +75,5 @@ router.use((err, req, res, next) => {
 
 module.exports = router;
 
-// clean up (make insert/deletes post and delete)
 // add to teamcity
 // use aws demo for full pipeline

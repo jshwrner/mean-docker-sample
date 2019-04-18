@@ -1,12 +1,12 @@
 // Get dependencies
 const express = require('express');
-const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
+
+const app = express();
 const PORT = '3000';
-// MongoDB URL from the docker-compose file
-const dbHost = 'mongodb://database/mean-docker';
+const dbHost = 'mongodb://database/mean-docker'; // MongoDB URL from the docker-compose file
 
 // Connect to mongodb
 mongoose.connect(dbHost)
@@ -16,8 +16,6 @@ mongoose.connect(dbHost)
 // Get our API routes
 const api = require('./routes/api');
 const people = require('./routes/people');
-
-const app = express();
 
 // Parsers for POST data
 app.use(bodyParser.json());
@@ -30,7 +28,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-// Set our api routes
+// Set our api routes - MUST COME AFTER CORS Middleware
 app.use('/api', api, people);
 
 // Get port from environment and store in Express.
