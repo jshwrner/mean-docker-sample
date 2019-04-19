@@ -7,9 +7,11 @@ pipeline {
                 echo 'Building..'
             }
         }
-        stage('Test') {
+        stage('Run Unit Tests') {
             steps {
-                echo 'Testing..'
+                echo 'Running angular-client unit tests...'
+                sh 'cd angular-client'
+                sh 'ng test'
             }
         }
         stage('Deploy') {
