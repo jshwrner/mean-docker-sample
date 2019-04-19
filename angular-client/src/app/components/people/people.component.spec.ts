@@ -7,30 +7,30 @@ import { of } from 'rxjs';
 describe('PeopleComponent', () => {
   const dummyPeople = [
     {
-      "_id": "5cb8867ddfe2450011f7ff30",
-      "personId": "100",
-      "isActive": true,
-      "age": 26,
-      "name": "Jon Doe",
-      "gender": "Male",
-      "company": "Test Company",
-      "email": "JonDoe@TestCompany.com",
-      "phone": "402-111-2222",
-      "address": "123 Street Lane"
+      _id: '5cb8867ddfe2450011f7ff30',
+      personId: '100',
+      isActive: true,
+      age: 26,
+      name: 'Jon Doe',
+      gender: 'Male',
+      company: 'Test Company',
+      email: 'JonDoe@TestCompany.com',
+      phone: '402-111-2222',
+      address: '123 Street Lane'
     },
     {
-      "_id": "6ef6654dsej3348711f7se30",
-      "personId": "101",
-      "isActive": false,
-      "age": 23,
-      "name": "Jane Doe",
-      "gender": "Female",
-      "company": "Test Company",
-      "email": "JaneDoe@TestCompany.com",
-      "phone": "402-111-3333",
-      "address": "123 Street Lane"
+      _id: '6ef6654dsej3348711f7se30',
+      personId: '101',
+      isActive: false,
+      age: 23,
+      name: 'Jane Doe',
+      gender: 'Female',
+      company: 'Test Company',
+      email: 'JaneDoe@TestCompany.com',
+      phone: '402-111-3333',
+      address: '123 Street Lane'
     }
-  ]
+  ];
   let peopleService;
   let peopleServiceStub: Partial<PeopleService>;
   let component: PeopleComponent;
@@ -40,7 +40,7 @@ describe('PeopleComponent', () => {
     getAllPeople: () => {
       return of(dummyPeople);
     }
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,12 +56,12 @@ describe('PeopleComponent', () => {
     fixture.detectChanges();
 
     peopleService = TestBed.get(PeopleService);
-  })
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
   it('should set People', () => {
     spyOn(peopleService, 'getAllPeople').and.callThrough();
     component.setPeople();

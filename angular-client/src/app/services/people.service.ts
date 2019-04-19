@@ -10,7 +10,7 @@ import { appInitializerFactory } from '@angular/platform-browser/src/browser/ser
   providedIn: 'root'
 })
 export class PeopleService {
-  apiBaseUrl:string = 'http://localhost:3000';
+  apiBaseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
