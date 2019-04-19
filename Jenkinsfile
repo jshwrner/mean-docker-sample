@@ -17,8 +17,8 @@ pipeline {
         stage('Containerize') {
             steps {
                 echo 'Containerizing....'
-                bat 'docker tag local-image:BUILD_TAG'
-                bat 'docker push joshnano/mean-docker:BUILD_TAG'
+                bat 'docker-compose tag local-image:BUILD_TAG'
+                bat 'docker-compose push joshnano/mean-docker:BUILD_TAG'
             }
         }
     }
