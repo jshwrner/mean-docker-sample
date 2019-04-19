@@ -1,6 +1,5 @@
 pipeline {
-    agent any
-
+    agent node
     stages {
         stage('Build') {
             steps {
@@ -10,6 +9,7 @@ pipeline {
         stage('Run Unit Tests') {
             steps {
                 echo 'Running angular-client unit tests...'
+                echo 'current directory: ' + %cd%
                 bat 'cd angular-client'
                 bat 'npm run test'
             }
