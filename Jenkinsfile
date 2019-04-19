@@ -2,10 +2,10 @@ pipeline {
     agent any
     
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
+        stage ('checkout'){
+          steps{
+            checkout scm
+          }
         }
         stage('Run Unit Tests') {
             steps {
@@ -14,9 +14,10 @@ pipeline {
                 bat 'npm run test'
             }
         }
-        stage('Deploy') {
+        stage('Docker Build') {
             steps {
-                echo 'Deploying....'
+                echo 'Containerizing....'
+                bat 'docker-compose up --build'
             }
         }
     }
