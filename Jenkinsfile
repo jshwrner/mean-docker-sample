@@ -11,7 +11,7 @@ pipeline {
             steps {
                 echo 'Running angular-client unit tests...'
                 sh 'cd angular-client'
-                sh 'ng test'
+                sh 'npm run test'
             }
         }
         stage('Deploy') {
