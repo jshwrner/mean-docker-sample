@@ -10,8 +10,8 @@ pipeline {
         stage('Run Unit Tests') {
             steps {
                 echo 'Running angular-client unit tests...'
-                sh 'cd angular-client'
-                sh 'npm run test'
+                bat 'cd angular-client'
+                bat 'npm run test'
             }
         }
         stage('Deploy') {
