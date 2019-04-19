@@ -11,7 +11,7 @@ pipeline {
         stage('Run Unit Tests') {
             steps {
                 echo 'Running angular-client unit tests...'
-                bat 'cd angular-client && npm run test --watch false'
+                bat 'cd angular-client && npm run test --watch=false'
             }
         }
         stage('Containerize') {
