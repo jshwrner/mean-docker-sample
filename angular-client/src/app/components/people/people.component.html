@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row" *ngFor="let person of people">
+    <div class="card card-block">
+      <h4 class="card-title">{{person._id}} + {{person.name}}</h4>
+      <p class="card-text">Age: {{person.age}}</p>
+      <p class="card-text">Gender: {{person.gender}}</p>
+      <p class="card-text">Company: {{person.company}}</p>
+      <p class="card-text">Email: {{person.email}}</p>
+      <p class="card-text">Phone: {{person.phone}}</p>
+      <p class="card-text">Address: {{person.address}}</p>
+    </div>
+  </div>
+</div>
