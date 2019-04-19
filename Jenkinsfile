@@ -1,22 +1,23 @@
 pipeline {
-    agent node
+    agent any
+    
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
+        stage ('checkout'){
+          steps{
+            checkout scm
+          }
         }
         stage('Run Unit Tests') {
             steps {
                 echo 'Running angular-client unit tests...'
-                echo 'current directory: ' + %cd%
                 bat 'cd angular-client'
                 bat 'npm run test'
             }
         }
-        stage('Deploy') {
+        stage('Docker Build') {
             steps {
-                echo 'Deploying....'
+                echo 'Containerizing....'
+                bat 'docker-compose up --build'
             }
         }
     }
