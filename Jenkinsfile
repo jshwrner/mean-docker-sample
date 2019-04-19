@@ -10,8 +10,7 @@ pipeline {
         stage('Run Unit Tests') {
             steps {
                 echo 'Running angular-client unit tests...'
-                bat 'cd angular-client'
-                bat 'npm run test'
+                bat 'cd angular-client && npm run test'
             }
         }
         stage('Docker Build') {
