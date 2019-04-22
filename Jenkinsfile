@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Install Dependencies'){
           steps{
-              echo env.GIT_COMMIT.take(7)."${currentBuild.number}"
+              echo env.GIT_COMMIT.take(7)".${currentBuild.number}"
             bat 'cd angular-client && npm i'
             bat 'cd express-server && npm i'
           }
