@@ -5,8 +5,13 @@ pipeline {
         APP_VERSION = "${env.GIT_COMMIT.take(7)}.${currentBuild.number}"
         APP_NAME = "mean-docker_express"
         REPO_NAME = "mean_server"
-        DOCKER_USER_ID = "joshnano"
-        DOCKER_PASSWORD = credentials('f238a476-2f22-450c-bfc2-2526789805b5')
+    }
+    
+    node {
+        withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', usernameVariable: 'DOCKER_USER_ID', DOCKER_PASSWORD: 'PASSWORD')]) {
+            echo "Password: ${DOCKER_PASSWORD}"
+            echo "Username: ${DOCKER_USER_ID}"
+        }
     }
     
     stages {
@@ -25,8 +30,7 @@ pipeline {
         stage('Pushing Server') {
             steps {
                 echo 'Tagging and Pushing....'
-                echo "${DOCKER_PASSWORD}"
-                bat "docker login -u ${DOCKER_USER_ID} -p ${DOCKER_PASSWORD}"
+                bat "${DOCKER_PASSWORD} | docker login -u ${DOCKER_USER_ID} -p --password-stdin"
                 bat "cd express-server && docker tag ${APP_NAME} ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
                 bat "docker push ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
                 echo 'Image Pushed Successfully'
