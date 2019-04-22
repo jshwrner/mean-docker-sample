@@ -3,7 +3,9 @@ pipeline {
     
     environment {
         APP_VERSION="${env.GIT_COMMIT.take(7)}.${currentBuild.number}"
-        DOCKER_ID_USER="joshnano"
+        DOCKER_USER_ID="joshnano"
+        APP_NAME="mean-docker_express"
+        REPO_NAME="mean_server"
     }
     
     stages {
@@ -22,7 +24,7 @@ pipeline {
         stage('Containerize') {
             steps {
                 echo 'Containerizing....'
-                bat "cd express-server && docker tag ${DOCKER_ID_User}/mean_server:${APP_VERSION} reponame:${APP_VERSION}"
+                bat "cd express-server && docker tag ${APP_NAME} ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
             }
         }
     }
