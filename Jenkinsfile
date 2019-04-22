@@ -25,7 +25,7 @@ pipeline {
         stage('Pushing Server') {
             steps {
                 echo 'Tagging and Pushing....'
-                echo "${DOCKER_PASSWORD}
+                echo "${DOCKER_PASSWORD}"
                 bat "docker login -u ${DOCKER_USER_ID} -p ${DOCKER_PASSWORD}"
                 bat "cd express-server && docker tag ${APP_NAME} ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
                 bat "docker push ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
