@@ -4,10 +4,7 @@ pipeline {
     stages {
         stage ('Install Dependencies'){
           steps{
-            bat 'set > env.txt' 
-            for (String i : readFile('env.txt').split("\r?\n")) {
-                 println i
-            }
+            echo %WORKSPACE%
             bat 'cd angular-client && npm i'
             bat 'cd express-server && npm i'
           }
