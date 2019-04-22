@@ -7,11 +7,9 @@ pipeline {
         REPO_NAME = "mean_server"
     }
     
-    node {
-        withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER_ID')]) {
-            echo "$DOCKER_USER_ID" 
-            echo "$DOCKER_PASSWORD"
-        }
+    withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER_ID')]) {
+        echo "$DOCKER_USER_ID" 
+        echo "$DOCKER_PASSWORD"
     }
     
     stages {
