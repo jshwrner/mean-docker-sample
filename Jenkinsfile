@@ -30,7 +30,7 @@ pipeline {
         stage('Pushing Server') {
             steps {
                 echo 'Tagging and Pushing....'
-                bat "cd express-server && docker tag ${APP_NAME} ${REPO_NAME}:${APP_VERSION}"
+                bat "cd express-server && docker tag ${APP_NAME} ${REPO_NAME}:${APP_VERSION} && docker tag ${APP_NAME} ${REPO_NAME}:latest"
                 bat "docker push ${REPO_NAME}:${APP_VERSION}"
                 echo 'Image Pushed Successfully'
             }
