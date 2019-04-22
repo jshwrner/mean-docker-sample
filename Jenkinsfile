@@ -22,7 +22,7 @@ pipeline {
         stage('Containerize') {
             steps {
                 echo 'Containerizing....'
-                bat 'cd express-server && docker tag "${DOCKER_ID_User}/mean_server:${APP_VERSION}" reponame:"${APP_VERSION}"'
+                bat 'cd express-server && docker tag ${DOCKER_ID_User}/mean_server:${APP_VERSION} reponame:${APP_VERSION}'
             }
         }
     }
