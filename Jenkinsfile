@@ -5,7 +5,7 @@ pipeline {
         APP_VERSION = "${env.GIT_COMMIT.take(7)}.${currentBuild.number}"
         APP_NAME = "mean-docker_express"
         REPO_NAME = "joshnano/mean_server"
-    }
+    } 
 
     stages {
         stage('Install Dependencies'){
