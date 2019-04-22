@@ -1,18 +1,20 @@
 pipeline {
     agent any
     
-    environment {
-        APP_VERSION = "${env.GIT_COMMIT.take(7)}.${currentBuild.number}"
-        APP_NAME = "mean-docker_express"
-        REPO_NAME = "mean_server"
-    }
-    
-    withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER_ID')]) {
-        echo "$DOCKER_USER_ID" 
-        echo "$DOCKER_PASSWORD"
-    }
-    
+   
+        
     stages {
+        stage ('Initialization') {
+             environment {
+                APP_VERSION = "${env.GIT_COMMIT.take(7)}.${currentBuild.number}"
+                APP_NAME = "mean-docker_express"
+                REPO_NAME = "mean_server"
+            }
+            withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER_ID')]) {
+                echo "$DOCKER_USER_ID" 
+                echo "$DOCKER_PASSWORD"
+            }
+        }
         stage ('Install Dependencies'){
           steps{
             bat 'cd angular-client && npm i'
