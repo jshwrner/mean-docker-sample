@@ -1,10 +1,14 @@
 pipeline {
     agent any
     
+    environment {
+        APP_VERSION: "${env.GIT_COMMIT.take(7)}.${currentBuild.number}"
+    }
+    
     stages {
         stage ('Install Dependencies'){
           steps{
-              echo "${env.GIT_COMMIT.take(7)}.${currentBuild.number}"
+            echo "${APP_VERSION}"
             bat 'cd angular-client && npm i'
             bat 'cd express-server && npm i'
           }
@@ -18,8 +22,6 @@ pipeline {
         stage('Containerize') {
             steps {
                 echo 'Containerizing....'
-                bat 'docker tag local-image:0.0. reponame:APP_VERSION'
-                bat 'docker-compose push joshnano/mean-docker:APP_VERSION'
             }
         }
     }
