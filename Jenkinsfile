@@ -8,11 +8,13 @@ pipeline {
     }
     stages {
         stage('Initialization'){
-            node{                
-                withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER_ID')]) {
-                    echo "$DOCKER_USER_ID" 
-                    echo "$DOCKER_PASSWORD"
-                }    
+            steps{
+                node{                
+                    withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER_ID')]) {
+                        echo "$DOCKER_USER_ID" 
+                        echo "$DOCKER_PASSWORD"
+                    }    
+                }
             }
         }
         stage('Install Dependencies'){
