@@ -21,10 +21,14 @@ pipeline {
                 bat 'cd angular-client && ng test --code-coverage --no-watch --source-map=false'
             }
         }
-        stage('Containerize') {
+        stage('Pushing Server') {
             steps {
-                echo 'Containerizing....'
+                echo 'Tagging Server....'
                 bat "cd express-server && docker tag ${APP_NAME} ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
+                echo 'Server Tagged'
+                echo 'Pushing Server...'
+                bat "push ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
+                echo 'Server Pushed'
             }
         }
     }
