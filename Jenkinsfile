@@ -8,9 +8,9 @@ pipeline {
     }
     
     node {
-        withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', usernameVariable: 'DOCKER_USER_ID', DOCKER_PASSWORD: 'PASSWORD')]) {
-            echo "Password: ${DOCKER_PASSWORD}"
-            echo "Username: ${DOCKER_USER_ID}"
+        withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER_ID')]) {
+            echo "$DOCKER_USER_ID" 
+            echo "$DOCKER_PASSWORD"
         }
     }
     
