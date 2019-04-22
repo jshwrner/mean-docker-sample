@@ -5,18 +5,8 @@ pipeline {
         APP_VERSION = "${env.GIT_COMMIT.take(7)}.${currentBuild.number}"
         APP_NAME = "mean-docker_express"
         REPO_NAME = "mean_server"
-        DOCKER_USER_ID = ""
-        DOCKER_PASSWORD = ""
     }
     stages {
-        stage('Initialization'){
-            steps{              
-                withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER_ID')]) {
-                    DOCKER_USER_ID = "$DOCKER_USER_ID" 
-                    DOCKER_PASSWORD =  "$DOCKER_PASSWORD"
-                }   
-            }
-        }
         stage('Install Dependencies'){
           steps{
             bat 'cd angular-client && npm i'
@@ -29,10 +19,16 @@ pipeline {
                 bat 'cd angular-client && ng test --code-coverage --no-watch --source-map=false'
             }
         }
+        stage('Login to Docker'){
+            steps{              
+                withCredentials([usernamePassword(credentialsId: 'f238a476-2f22-450c-bfc2-2526789805b5', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER_ID')]) {
+                    bat "${DOCKER_PASSWORD} | docker login -u ${DOCKER_USER_ID} -p --password-stdin"
+                }   
+            }
+        }
         stage('Pushing Server') {
             steps {
                 echo 'Tagging and Pushing....'
-                bat "${DOCKER_PASSWORD} | docker login -u ${DOCKER_USER_ID} -p --password-stdin"
                 bat "cd express-server && docker tag ${APP_NAME} ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
                 bat "docker push ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
                 echo 'Image Pushed Successfully'
