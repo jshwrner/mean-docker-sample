@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Install Dependencies'){
           steps{
-            echo %WORKSPACE%
+            echo 'printenv'
             bat 'cd angular-client && npm i'
             bat 'cd express-server && npm i'
           }
