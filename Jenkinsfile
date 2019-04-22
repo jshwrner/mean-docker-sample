@@ -1,13 +1,10 @@
 pipeline {
     agent any
     
-    environment {
-        APP_VERSION = 1.0.0.BUILD_TAG
-    }
-    
     stages {
         stage ('Install Dependencies'){
           steps{
+            printenv
             bat 'cd angular-client && npm i'
             bat 'cd express-server && npm i'
           }
@@ -21,7 +18,7 @@ pipeline {
         stage('Containerize') {
             steps {
                 echo 'Containerizing....'
-                bat 'docker tag local-image:APP_VERSION reponame:APP_VERSION'
+                bat 'docker tag local-image:0.0. reponame:APP_VERSION'
                 bat 'docker-compose push joshnano/mean-docker:APP_VERSION'
             }
         }
