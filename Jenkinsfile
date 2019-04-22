@@ -8,7 +8,6 @@ pipeline {
     stages {
         stage ('Install Dependencies'){
           steps{
-            echo "${APP_VERSION}"
             bat 'cd angular-client && npm i'
             bat 'cd express-server && npm i'
           }
@@ -22,6 +21,8 @@ pipeline {
         stage('Containerize') {
             steps {
                 echo 'Containerizing....'
+                docker tag joshnano/mean-docker-server:"${APP_VERSION}" reponame:"${APP_VERSION}"
+                docker push joshnano/mean-docker-server
             }
         }
     }
