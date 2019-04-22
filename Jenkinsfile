@@ -6,6 +6,7 @@ pipeline {
         APP_NAME = "mean-docker_express"
         REPO_NAME = "joshnano/mean_server"
     }
+    
     stages {
         stage('Install Dependencies'){
           steps{
