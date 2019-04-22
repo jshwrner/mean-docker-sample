@@ -23,12 +23,11 @@ pipeline {
         }
         stage('Pushing Server') {
             steps {
-                echo 'Tagging Server....'
+                echo 'Tagging and Pushing....'
+                bat "docker login"
                 bat "cd express-server && docker tag ${APP_NAME} ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
-                echo 'Server Tagged'
-                echo 'Pushing Server...'
                 bat "docker push ${DOCKER_USER_ID}/${REPO_NAME}:${APP_VERSION}"
-                echo 'Server Pushed'
+                echo 'Image Pushed Successfully'
             }
         }
     }
