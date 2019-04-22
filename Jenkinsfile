@@ -1,6 +1,10 @@
 pipeline {
     agent any
     
+    environment {
+        APP_VERSION = 1.0.0.BUILD_TAG
+    }
+    
     stages {
         stage ('Install Dependencies'){
           steps{
@@ -17,8 +21,8 @@ pipeline {
         stage('Containerize') {
             steps {
                 echo 'Containerizing....'
-                bat 'docker-compose tag local-image:BUILD_TAG'
-                bat 'docker-compose push joshnano/mean-docker:BUILD_TAG'
+                bat 'docker tag local-image:APP_VERSION reponame:APP_VERSION'
+                bat 'docker-compose push joshnano/mean-docker:APP_VERSION'
             }
         }
     }
