@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        APP_VERSION: "${env.GIT_COMMIT.take(7)}.${currentBuild.number}"
+        APP_VERSION = "${env.GIT_COMMIT.take(7)}.${currentBuild.number}"
     }
     
     stages {
