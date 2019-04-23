@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         APP_VERSION = "1.0.${currentBuild.number}"
-        APP_NAME = "mean-docker_angular-simple"
+        APP_NAME = "angular-simple"
         REPO_NAME = "joshnano/angular-simple"
     } 
 
