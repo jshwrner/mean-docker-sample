@@ -1,9 +1,8 @@
 # mean-docker-sample
 Application build using the MEAN stack and Docker
-
-Run Dockerfile
+To Run image: <br/>
 docker run -p 4200:4200 -itd joshnano/angular-simple:1.0.x
-<br/>
+<br/><br/>
 <b>**Note</b> <br/>
 -d - detached mode: docker will run in the background<br/>
 -p - port: sets port mapping<br/>
