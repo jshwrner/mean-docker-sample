@@ -1,9 +1,10 @@
 # mean-docker-sample
 Application build using the MEAN stack and Docker
+
 **To Run image:** 
 `docker run -p 4200:4200 -v absolutePathOnHost:pathOnContainer -itd joshnano/angular-simple:x.x.x`
 
-**Example**: 
+**Example:** 
 `docker run -p 4200:4200 -v c:/users/joshwerner.exchange/desktop/docker_shared:/mnt/docker_shared -itd joshnano/angular-simple:1.0.85`
 
 **Notes**
