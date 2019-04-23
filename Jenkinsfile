@@ -13,6 +13,12 @@ pipeline {
             bat 'cd angular-client && npm i'
             bat 'cd express-server && npm i'
           }
+        }        
+        stage('Run Linter') {
+            steps {
+                echo 'Running angular-client tslint...'
+                bat 'cd angular-client && ng lint'
+            }
         }
         stage('Run Unit Tests') {
             steps {
