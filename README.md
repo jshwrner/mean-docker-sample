@@ -2,4 +2,4 @@
 Application build using the MEAN stack and Docker
 
 Run Dockerfile
- docker run -it joshnano/angular-simple:1.0.x -p 4200:4200
+docker run -p 4200:4200 -it joshnano/angular-simple:1.0.85
