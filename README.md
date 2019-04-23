@@ -1,5 +1,5 @@
 # mean-docker-sample
-Application build using the MEAN stack and Docker
+Application build using the MEAN stack and Docker <br/> <br/>
 To Run image: <br/>
 docker run -p 4200:4200 -itd joshnano/angular-simple:1.0.x
 <br/><br/>
