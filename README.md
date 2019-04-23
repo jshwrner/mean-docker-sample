@@ -11,4 +11,5 @@ Application build using the MEAN stack and Docker <br/> <br/>
 -it - interactive mode: can execute commands in container
   -i: interactive keeps standard input open
   -t: allocates a terminal
--v - volume: creates shareable volume. Can also create shareable volumes between containers
+-v - volume: creates shareable volume. Can also create shareable volumes between containers. 
+   - This is especially beneficial when there is a need for data to persist after container is stopped or removed
