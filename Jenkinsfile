@@ -3,27 +3,28 @@ pipeline {
 
     environment {
         APP_VERSION = "1.0.${currentBuild.number}"
-        APP_NAME = "mean-docker_express"
-        REPO_NAME = "joshnano/mean_server"
+        APP_NAME = "mean-docker_angular-simple"
+        REPO_NAME = "joshnano/angular-simple"
     } 
 
     stages {
         stage('Install Dependencies'){
           steps{
+            bat 'cd angular-simple && npm i'
             bat 'cd angular-client && npm i'
             bat 'cd express-server && npm i'
           }
         }        
         stage('Run Linter') {
             steps {
-                echo 'Running angular-client tslint...'
-                bat 'cd angular-client && ng lint'
+                echo 'Running angular-simple tslint...'
+                bat 'cd angular-simple && ng lint'
             }
         }
         stage('Run Unit Tests') {
             steps {
-                echo 'Running angular-client unit tests...'
-                bat 'cd angular-client && ng test --code-coverage --no-watch --source-map=false'
+                echo 'Running angular-simple unit tests...'
+                bat 'cd angular-simple && ng test --code-coverage --no-watch --source-map=false'
             }
         }
         stage('Login to Docker'){
@@ -33,14 +34,23 @@ pipeline {
                 }   
             }
         }
-        stage('Pushing Server') {
+        stage('Pushing Simple Client') {
             steps {
                 echo 'Tagging and Pushing....'
-                bat "cd express-server && docker build -t ${APP_NAME} ."
-                bat "cd express-server && docker tag ${APP_NAME} ${REPO_NAME}:${APP_VERSION}"
+                bat "cd angular-simple && docker build -t ${APP_NAME} ."
+                bat "cd angular-simple && docker tag ${APP_NAME} ${REPO_NAME}:${APP_VERSION}"
                 bat "docker push ${REPO_NAME}:${APP_VERSION}"
                 echo 'Image Pushed Successfully'
             }
         }
+        // stage('Pushing Server') {
+        //     steps {
+        //         echo 'Tagging and Pushing....'
+        //         bat "cd express-server && docker build -t ${APP_NAME} ."
+        //         bat "cd express-server && docker tag ${APP_NAME} ${REPO_NAME}:${APP_VERSION}"
+        //         bat "docker push ${REPO_NAME}:${APP_VERSION}"
+        //         echo 'Image Pushed Successfully'
+        //     }
+        // }
     }
 }
