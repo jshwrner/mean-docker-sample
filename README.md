@@ -24,4 +24,5 @@ Application build using the MEAN stack and Docker
 - Run `./install_unix.sh` to initialize/run container(s)
 
 **Windows**
-- Note: Must switch Docker to use Windows Containers instead of Linux containers
+- Note: Must switch Docker to use Windows Containers instead of Linux containers and turn on "experimental features"
+
