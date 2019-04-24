@@ -18,9 +18,9 @@ Application build using the MEAN stack and Docker
 
 **Installation:** 
 **Unix**
-- Copy install.sh to machine
+- Copy install_unix.sh to machine
 - Navigate to that directory using Terminal
-- Run `chmod +x install.sh` to make file an executable program
-- Run `./install.sh` to initialize/run container(s)
+- Run `chmod +x install_unix.sh` to make file an executable program
+- Run `./install_unix.sh` to initialize/run container(s)
 
 **Windows**
