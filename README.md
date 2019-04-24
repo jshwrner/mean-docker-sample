@@ -15,3 +15,12 @@ Application build using the MEAN stack and Docker
   - t = allocates a terminal
 - v = volume: creates shareable volume. Can also create shareable volumes between containers. 
    - This is especially beneficial when there is a need for data to persist after container is stopped or removed
+
+**Installation:** 
+**Unix**
+- Copy install.sh to machine
+- Navigate to that directory using Terminal
+- Run `chmod +x install.sh` to make file an executable program
+- Run `./install.sh` to initialize/run container(s)
+
+**Windows**
