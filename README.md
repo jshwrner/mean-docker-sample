@@ -23,6 +23,8 @@ Application build using the MEAN stack and Docker
 - Run `chmod +x install_unix.sh` to make file an executable program
 - Run `./install_unix.sh` to initialize/run container(s)
 
-**Windows**
-- Note: Must switch Docker to use Windows Containers instead of Linux containers and turn on "experimental features"
+**Windows Server 2019**
+- Follow steps in install_windows.ps1. 
+- **Note:** It may be best just to copy/paste commands since the computer will need restarted multiple times and changes will need to be made on host machine if using Hyper-V
+
 
